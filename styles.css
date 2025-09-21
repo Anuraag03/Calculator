@@ -1,26 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
 body{
-    margin : 0;
-    padding : 0;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #232526 0%, #414345 100%);
+    font-family: 'Orbitron', Arial, Helvetica, sans-serif;
+    color: #fff;
+    letter-spacing: 0.5px;
 }
 .calculator{
     display: flex;
     flex-direction: column;
     width: 700px;
     margin: 4rem auto;
-    border: 2px solid #000;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    background-color: black;
+    border: 2px solid #222;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(4px);
 }
 .calculator-display{
-    background-color: grey;
-    color: black;
-    font-size: 2rem;
+    background: linear-gradient(90deg, #e0eafc 0%, #cfdef3 100%);
+    color: #232526;
+    font-size: 2.2rem;
     margin: 1rem 0.5rem;
-    padding: 1rem;
+    padding: 1.2rem 1rem;
     text-align: right;
-    border-bottom: 2px solid #000;
+    border-bottom: 2px solid #222;
     border-radius: 10px;
+    font-family: 'Orbitron', Arial, Helvetica, sans-serif;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.bmi-section, .loan-section, .currency-section, .weight-section {
+    font-family: 'Orbitron', Arial, Helvetica, sans-serif;
+    box-shadow: 0 4px 24px 0 rgba(31,38,135,0.17);
+    background: rgba(34,34,34,0.95);
+    border: 1.5px solid #333;
+}
+
+.bmi-section h2, .loan-section h2, .currency-section h2, .weight-section h2 {
+    font-family: 'Orbitron', Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ffd700;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 .calculator-buttons{
     display: flex;
@@ -36,6 +61,7 @@ body{
 }
 
 button {
+    font-family:'Orbitron', Arial, Helvetica, sans-serif;
     padding: 1.2rem 0;
     font-size: 1.2rem;
     border: none;

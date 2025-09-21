@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +8,20 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="calculator">
+    <div style="max-width:700px;margin:2rem auto 0 auto;">
+        <select id="tool-menu" style="width:100%;padding:0.8rem 1rem;font-size:1.1rem;border-radius:8px;border:1.5px solid #333;background:#232526;color:#ffd700;font-family:'Orbitron',Arial,sans-serif;letter-spacing:1px;">
+            <option value="calculator-section">Standard Calculator</option>
+            <option value="bmi-section">BMI Calculator</option>
+            <option value="loan-section">Loan Interest Calculator</option>
+            <option value="currency-section">Currency Converter</option>
+            <option value="weight-section">Weight Converter</option>
+        </select>
+    </div>
+    <div id="calculator-section" class="calculator">
         <div class="calculator-display">HELLo</div>
         <div class="calculator-buttons">
             <div class="button-rows">
-                <button onclick="document.getElementsByClassName('calculator-display').innerHTML = ''">AC</button>
+                <button>AC</button>
                 <button>%</button>
                 <button>DEL</button>
                 <button>/</button>
@@ -40,12 +50,99 @@
                 <button>.</button>
                 <button>=</button>
             </div>
-
-
         </div>
     </div>
-    
-</div>
-<script src="script.js"></script>
+    <div id="bmi-section" class="bmi-section" style="margin:2rem auto;max-width:400px;background:#222;padding:1.5rem;border-radius:10px;color:#fff;display:none;">
+        <h2 style="margin-top:0;">BMI Calculator</h2>
+        <form id="bmi-form">
+            <label for="bmi-weight">Weight (kg):</label>
+            <input type="number" id="bmi-weight" min="1" step="any" required style="width:100%;margin-bottom:0.5rem;">
+            <label for="bmi-height">Height (cm):</label>
+            <input type="number" id="bmi-height" min="1" step="any" required style="width:100%;margin-bottom:0.5rem;">
+            <button type="submit" style="width:100%;margin-top:0.5rem;">Calculate BMI</button>
+        </form>
+        <div id="bmi-result" style="margin-top:1rem;font-weight:bold;"></div>
+    </div>
+    <div id="loan-section" class="loan-section" style="margin:2rem auto;max-width:400px;background:#222;padding:1.5rem;border-radius:10px;color:#fff;display:none;">
+        <h2 style="margin-top:0;">Loan Interest Calculator</h2>
+        <form id="loan-form">
+            <label for="loan-amount">Loan Amount:</label>
+            <input type="number" id="loan-amount" min="1" step="any" required style="width:100%;margin-bottom:0.5rem;">
+            <label for="loan-rate">Annual Interest Rate (%):</label>
+            <input type="number" id="loan-rate" min="0" step="any" required style="width:100%;margin-bottom:0.5rem;">
+            <label for="loan-years">Loan Term (years):</label>
+            <input type="number" id="loan-years" min="1" step="1" required style="width:100%;margin-bottom:0.5rem;">
+            <button type="submit" style="width:100%;margin-top:0.5rem;">Calculate</button>
+        </form>
+        <div id="loan-result" style="margin-top:1rem;font-weight:bold;"></div>
+    </div>
+    <div id="currency-section" class="currency-section" style="margin:2rem auto;max-width:400px;background:#222;padding:1.5rem;border-radius:10px;color:#fff;display:none;">
+        <h2 style="margin-top:0;">Currency Converter</h2>
+        <form id="currency-form">
+            <label for="currency-amount">Amount:</label>
+            <input type="number" id="currency-amount" min="0" step="any" required style="width:100%;margin-bottom:0.5rem;">
+            <label for="currency-from">From:</label>
+            <select id="currency-from" style="width:100%;margin-bottom:0.5rem;">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="INR">INR</option>
+                <option value="GBP">GBP</option>
+            </select>
+            <label for="currency-to">To:</label>
+            <select id="currency-to" style="width:100%;margin-bottom:0.5rem;">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="INR">INR</option>
+                <option value="GBP">GBP</option>
+            </select>
+            <button type="submit" style="width:100%;margin-top:0.5rem;">Convert</button>
+        </form>
+        <div id="currency-result" style="margin-top:1rem;font-weight:bold;"></div>
+    </div>
+    <div id="weight-section" class="weight-section" style="margin:2rem auto;max-width:400px;background:#222;padding:1.5rem;border-radius:10px;color:#fff;display:none;">
+        <h2 style="margin-top:0;">Weight Converter</h2>
+        <form id="weight-form">
+            <label for="weight-amount">Amount:</label>
+            <input type="number" id="weight-amount" min="0" step="any" required style="width:100%;margin-bottom:0.5rem;">
+            <label for="weight-from">From:</label>
+            <select id="weight-from" style="width:100%;margin-bottom:0.5rem;">
+                <option value="kg">Kilograms</option>
+                <option value="g">Grams</option>
+                <option value="lb">Pounds</option>
+                <option value="oz">Ounces</option>
+            </select>
+            <label for="weight-to">To:</label>
+            <select id="weight-to" style="width:100%;margin-bottom:0.5rem;">
+                <option value="kg">Kilograms</option>
+                <option value="g">Grams</option>
+                <option value="lb">Pounds</option>
+                <option value="oz">Ounces</option>
+            </select>
+            <button type="submit" style="width:100%;margin-top:0.5rem;">Convert</button>
+        </form>
+        <div id="weight-result" style="margin-top:1rem;font-weight:bold;"></div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+    // Menu logic to show/hide sections
+    const menu = document.getElementById('tool-menu');
+    const sections = {
+        'calculator-section': document.getElementById('calculator-section'),
+        'bmi-section': document.getElementById('bmi-section'),
+        'loan-section': document.getElementById('loan-section'),
+        'currency-section': document.getElementById('currency-section'),
+        'weight-section': document.getElementById('weight-section')
+    };
+    function showSection(key) {
+        for (const k in sections) {
+            if (sections[k]) sections[k].style.display = (k === key) ? '' : 'none';
+        }
+    }
+    menu.addEventListener('change', function() {
+        showSection(menu.value);
+    });
+    // Show calculator by default
+    showSection('calculator-section');
+    </script>
 </body>
 </html>
