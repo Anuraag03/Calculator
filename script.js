@@ -1,4 +1,4 @@
-    // Weight Converter Logic
+// Weight Converter Logic
     const weightForm = document.getElementById('weight-form');
     if (weightForm) {
         // Conversion rates to kilograms
@@ -28,26 +28,32 @@
             }
         });
     }
-    // Currency Converter Logic (static rates)
+    // Currency Converter Logic (live rates)
     const currencyForm = document.getElementById('currency-form');
     if (currencyForm) {
-        // Example static rates (1 USD = ...)
-        const rates = {
-            USD: 1,
-            EUR: 0.93,
-            INR: 83.2,
-            GBP: 0.8
-        };
         currencyForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const amount = parseFloat(document.getElementById('currency-amount').value);
             const from = document.getElementById('currency-from').value;
             const to = document.getElementById('currency-to').value;
-            if (amount >= 0 && rates[from] && rates[to]) {
-                // Convert to USD first, then to target
-                const usd = amount / rates[from];
-                const converted = usd * rates[to];
-                document.getElementById('currency-result').textContent = `${amount} ${from} = ${converted.toFixed(2)} ${to}`;
+            if (amount >= 0 && from && to) {
+                document.getElementById('currency-result').textContent = 'Fetching rates...';
+                const apiKey = 'YOUR_API_KEY'; // Replace with your real API key
+                const url = `https://v6.exchangerate-api.com/v6/${apiKey}/pair/${from}/${to}/${amount}`;
+                fetch(url)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.result === 'success') {
+                            // data.conversion_result is the converted amount
+                            document.getElementById('currency-result').textContent =
+                                `${amount} ${from} = ${data.conversion_result} ${to}`;
+                        } else {
+                            document.getElementById('currency-result').textContent = 'Conversion failed.';
+                        }
+                    })
+                    .catch(() => {
+                        document.getElementById('currency-result').textContent = 'Error fetching rates.';
+                    });
             } else {
                 document.getElementById('currency-result').textContent = 'Please enter valid values.';
             }

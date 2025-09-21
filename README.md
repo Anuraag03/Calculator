@@ -7,7 +7,7 @@ A modern, multi-tool web calculator built with HTML, CSS, and JavaScript.
 - Standard Calculator: Basic arithmetic operations (add, subtract, multiply, divide), percentage, clear (AC), delete (DEL), and decimal point support
 - BMI Calculator: Calculate your Body Mass Index and get a health category
 - Loan Interest Calculator: Compute monthly and total payments for loans
-- Currency Converter: Convert between USD, EUR, INR, and GBP (static rates)
+- Currency Converter: Convert between USD, EUR, INR, and GBP (live rates via exchangerate.host or optional API integration)
 - Weight Converter: Convert between kilograms, grams, pounds, and ounces
 - Clean, responsive, and visually appealing UI with a tech-inspired theme
 - Menu to easily switch between tools
@@ -26,6 +26,10 @@ A modern, multi-tool web calculator built with HTML, CSS, and JavaScript.
 
 ## Demo
 ![Calculator Screenshot](screenshot.png)
+
+
+## API Integration
+The currency converter can use live rates from APIs such as [exchangerate.host](https://exchangerate.host) (no API key required) or [exchangerate-api.com](https://www.exchangerate-api.com/) (API key required). To use an API that requires a key, sign up for the service, get your API key, and update the fetch URL in `script.js` as shown in the API documentation.
 
 ## Customization
 - Modify `styles.css` for different color schemes or fonts
